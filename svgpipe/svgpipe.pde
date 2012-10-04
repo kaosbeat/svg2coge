@@ -19,16 +19,23 @@ void setup() {
 
 void draw() {
   canvas.beginDraw();
-  background(255) ;
+  background(0,0) ;
+  //for(int i=0;i<10;i++){
+    drawStuff();
+   // }
+  canvas.endDraw();
+  image(canvas, 0, 0);
+  server.sendImage(canvas);
+}
+
+void drawStuff(){
+
   //noFill();
   shape(svg,0,0);
-
   stroke(mouseY,14,15);
+  shape(ring, 0, 0);
+  ring.scale(1,0.9);
+  ring.scale(1,1.1);
+  ring.rotate(20);
   fill(mouseY,203,0);
-  //shape(ring, 0, 0);
-  canvas.endDraw();
-
-  image(canvas, 0, 0);
-
-  server.sendImage(canvas);
 }
