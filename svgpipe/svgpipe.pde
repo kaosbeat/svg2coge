@@ -1,15 +1,23 @@
 import codeanticode.syphon.*;
+import oscP5.*;
+import netP5.*;
+
 PShape svg;
 PShape ring;
 PShape[] rings;
 PShape hearts;
 SyphonServer server;
+OscP5 oscP5;
+NetAddress myBroadcastLocation;
 PGraphics canvas;
+float factor;
+
 
 void setup() {
   size(960, 540, P3D);
   canvas = createGraphics(width, height, P3D);
   server = new SyphonServer(this, "Processing Love");
+  oscP5 = new OscP5(this, 1234);
   svg = loadShape("baselove.svg");
   ring = svg.getChild("circles");
   rings = ring.getChildren();
@@ -40,4 +48,14 @@ void drawStuff(){
   ring.scale(1,1.1);
   hearts.rotate(20);
   fill(mouseY,203,0);
+}
+
+
+void oscEvent(OscMessage theOscMessage)
+{
+  if ( theOscMessage.addrPattern().equals("/coge") )
+  {
+    factor = theOscMessage.get(0).floatValue()/100;
+    println(factor);
+  }
 }
