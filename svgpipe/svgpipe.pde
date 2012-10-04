@@ -1,6 +1,7 @@
 import codeanticode.syphon.*;
 PShape svg;
 PShape ring;
+PShape[] rings;
 PShape hearts;
 SyphonServer server;
 PGraphics canvas;
@@ -11,6 +12,7 @@ void setup() {
   server = new SyphonServer(this, "Processing Love");
   svg = loadShape("baselove.svg");
   ring = svg.getChild("circles");
+  rings = ring.getChildren();
   hearts = svg.getChild("hearts");
   svg.disableStyle(); 
   smooth();
@@ -36,6 +38,6 @@ void drawStuff(){
   shape(ring, 0, 0);
   ring.scale(1,0.9);
   ring.scale(1,1.1);
-  ring.rotate(20);
+  hearts.rotate(20);
   fill(mouseY,203,0);
 }
