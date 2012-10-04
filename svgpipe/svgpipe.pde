@@ -1,7 +1,8 @@
+import codeanticode.syphon.*;
 PShape svg;
 PShape ring;
 PShape hearts;
-
+SyphonServer server;
 
 void setup() {
   size(960, 540);
