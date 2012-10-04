@@ -10,7 +10,7 @@ SyphonServer server;
 OscP5 oscP5;
 NetAddress myBroadcastLocation;
 PGraphics canvas;
-float factor;
+float factor,currentScale1,previousScale1;
 
 
 void setup() {
@@ -24,10 +24,13 @@ void setup() {
   hearts = svg.getChild("hearts");
   svg.disableStyle(); 
   smooth();
+  previousScale1 = 1;
+  currentScale1 = 1;
 }
 
 
 void draw() {
+  rings[0].scale(1,previousScale1);
   canvas.beginDraw();
   background(0,0) ;
   //for(int i=0;i<10;i++){
@@ -44,8 +47,9 @@ void drawStuff(){
   shape(svg,0,0);
   stroke(mouseY,14,15);
   shape(ring, 0, 0);
-  ring.scale(1,0.9);
-  ring.scale(1,1.1);
+  previousScale1 = factor;
+  rings[0].scale(1,previousScale);
+  //rings[1].scale(1,1.1);
   hearts.rotate(20);
   fill(mouseY,203,0);
 }
@@ -55,7 +59,7 @@ void oscEvent(OscMessage theOscMessage)
 {
   if ( theOscMessage.addrPattern().equals("/coge") )
   {
-    factor = theOscMessage.get(0).floatValue()/100;
+    factor = theOscMessage.get(0).floatValue();
     println(factor);
   }
 }
