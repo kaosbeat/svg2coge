@@ -30,7 +30,6 @@ void setup() {
 
 
 void draw() {
-
   rings[0].scale(1,1/previousScale1);
   previousScale1 = factor;
   canvas.beginDraw();
@@ -53,10 +52,8 @@ void drawStuff(){
   //rings[1].scale(1,1.1);
   pushMatrix();
   translate(width/2,height/2);
-  //hearts.translate(width/2,height/2);
   //shape(hearts,0,0);
   hearts.rotate(20);
-  shape(hearts,0,0);
   popMatrix();
   fill(mouseY,203,0);
 }
@@ -70,3 +67,4 @@ void oscEvent(OscMessage theOscMessage)
     println(factor);
   }
 }
+
